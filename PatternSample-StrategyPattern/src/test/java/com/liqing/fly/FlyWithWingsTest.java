@@ -1,29 +1,23 @@
 package com.liqing.fly;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.liqing.BaseConsoleOutputTest;
+
 /**
  * User: LiQing Date: 8/11/13 Time: 9:57 AM
  */
-public class FlyWithWingsTest
+public class FlyWithWingsTest extends BaseConsoleOutputTest
 {
 
-	private ByteArrayOutputStream byteArrayOutputStream;
 	private FlyWithWings flyWithWings;
 
 	@Before
 	public void setUp()
 	{
-		byteArrayOutputStream = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(byteArrayOutputStream));
+		super.setUp();
 		flyWithWings = new FlyWithWings();
 	}
 
@@ -31,13 +25,12 @@ public class FlyWithWingsTest
 	public void shouldDisplayFlyWithWings()
 	{
 		flyWithWings.fly();
-		assertThat(byteArrayOutputStream.toString(), containsString("I'm flying"));
+		shouldPrintCorrectContent("I'm flying");
 	}
 
 	@After
 	public void tearDown()
 	{
-		System.setOut(null);
-
+		super.tearDown();
 	}
 }

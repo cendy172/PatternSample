@@ -1,28 +1,24 @@
 package com.liqing.duck;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.liqing.BaseConsoleOutputTest;
 import com.liqing.fly.FlyBehavior;
 import com.liqing.quack.QuackBehavior;
 
 /**
  * User: LiQing Date: 8/11/13 Time: 10:31 AM
  */
-public class DuckTest
+public class DuckTest extends BaseConsoleOutputTest
 {
 	private Duck duck;
-	private ByteArrayOutputStream byteArrayOutputStream;
 
 	@Mock
 	private FlyBehavior flyBehavior;
@@ -32,10 +28,9 @@ public class DuckTest
 	@Before
 	public void setUp()
 	{
+		super.setUp();
 		MockitoAnnotations.initMocks(this);
 		duck = new FakeDuck(flyBehavior, quackBehavior);
-		byteArrayOutputStream = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(byteArrayOutputStream));
 	}
 
 	@Test
@@ -56,7 +51,13 @@ public class DuckTest
 	public void shouldSwimWhenDuckIsInWater()
 	{
 		duck.swim();
-		assertThat(byteArrayOutputStream.toString(), containsString("All ducks float, event decoys"));
+		shouldPrintCorrectContent("All ducks float, event decoys");
+	}
+
+	@After
+	public void tearDown()
+	{
+		super.tearDown();
 	}
 
 	private class FakeDuck extends Duck

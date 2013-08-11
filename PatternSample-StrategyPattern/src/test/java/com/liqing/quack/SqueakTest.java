@@ -1,41 +1,36 @@
 package com.liqing.quack;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
+import com.liqing.BaseConsoleOutputTest;
 
 /**
  * User: LiQing Date: 8/11/13 Time: 10:22 AM
  */
-public class SqueakTest
+public class SqueakTest extends BaseConsoleOutputTest
 {
 
-	private ByteArrayOutputStream byteArrayOutputStream;
 	private Squeak squeak;
 
 	@Before
 	public void setUp()
 	{
-		byteArrayOutputStream = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(byteArrayOutputStream));
+		super.setUp();
 		squeak = new Squeak();
 	}
 
-    @Test
-    public void shouldSqueakWhenDuckIsSqueak() {
-        squeak.quack();
-        assertThat(byteArrayOutputStream.toString(), containsString("Squeak"));
-    }
+	@Test
+	public void shouldSqueakWhenDuckIsSqueak()
+	{
+		squeak.quack();
+		shouldPrintCorrectContent("Squeak");
+	}
 
-    @After
+	@After
 	public void tearDown()
 	{
-		System.setOut(null);
+		super.tearDown();
 	}
 }

@@ -1,29 +1,23 @@
 package com.liqing.quack;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.liqing.BaseConsoleOutputTest;
+
 /**
  * User: LiQing Date: 8/11/13 Time: 10:07 AM
  */
-public class MuteQuackTest
+public class MuteQuackTest extends BaseConsoleOutputTest
 {
 
-	private ByteArrayOutputStream byteArrayOutputStream;
 	private MuteQuack muteQuack;
 
 	@Before
 	public void setUp()
 	{
-		byteArrayOutputStream = new ByteArrayOutputStream();
-		System.setOut(new PrintStream(byteArrayOutputStream));
+		super.setUp();
 		muteQuack = new MuteQuack();
 	}
 
@@ -31,12 +25,12 @@ public class MuteQuackTest
 	public void shouldDisplayMute()
 	{
 		muteQuack.quack();
-		assertThat(byteArrayOutputStream.toString(), containsString("Silence"));
+		shouldPrintCorrectContent("Silence");
 	}
 
 	@After
 	public void tearDown()
 	{
-		System.setOut(null);
+		super.tearDown();
 	}
 }
