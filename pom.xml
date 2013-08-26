@@ -8,6 +8,7 @@
     <modules>
         <module>PatternSample-StrategyPattern</module>
         <module>FacadePattern</module>
+        <module>FactoryPattern</module>
     </modules>
     <packaging>pom</packaging>
 
