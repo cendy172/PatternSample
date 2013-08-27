@@ -8,80 +8,94 @@ import org.junit.Test;
 
 import com.liqing.BaseOutputTest;
 
-public class CDPlayerTest extends BaseOutputTest
+public class DvdPlayerTest extends BaseOutputTest
 {
 
-	private CDPlayer cdPlayer;
+	private DvdPlayer dvdPlayer;
 
 	@Override
 	@Before
 	public void setUp()
 	{
 		super.setUp();
-		cdPlayer = new CDPlayer("fake_cdplayer", new Amplifier("fake_amplifier"));
+		dvdPlayer = new DvdPlayer("fake_dvdplayer", new Amplifier("fake_amplifier"));
 	}
 
-    @Test
-    public void shouldPrintOnWhenTurnOn()
-    {
-        cdPlayer.on();
-        assertOutPut("on");
-    }
+	@Test
+	public void shouldPrintOnWhenTurnOn()
+	{
+		dvdPlayer.on();
+		assertOutPut("on");
+	}
 
 	@Test
 	public void shouldPrintOffWhenTurnOff()
 	{
-		cdPlayer.off();
+		dvdPlayer.off();
 		assertOutPut("off");
 	}
 
 	@Test
 	public void shouldOutputWhenEjectCD()
 	{
-		cdPlayer.eject();
+		dvdPlayer.eject();
 		assertOutPut("eject");
 	}
 
 	@Test
 	public void shouldOutputWhenSetSurroundSound()
 	{
-		cdPlayer.play("title");
+		dvdPlayer.play("title");
 		assertOutPut("playing \"title\"");
 	}
 
 	@Test
 	public void shouldNotPlayingWhenNoTitle()
 	{
-		cdPlayer.play(1);
-		assertOutPut("can't play track 1, no cd inserted");
+		dvdPlayer.play(1);
+		assertOutPut("can't play track 1, no dvd inserted");
 	}
 
 	@Test
 	public void shouldPlayingWhenWithTitle()
 	{
-		cdPlayer.play("title");
-		cdPlayer.play(1);
+		dvdPlayer.play("title");
+		dvdPlayer.play(1);
 		assertOutPut("playing track 1");
+	}
+
+	@Test
+	public void shouldOutputWhenSetTwoChannelAudio()
+	{
+		dvdPlayer.setTwoChannelAudio();
+		assertOutPut("set two channel audio");
+	}
+
+	@Test
+	public void shouldOutputWhenSetSurroundAudio()
+	{
+		dvdPlayer.setSurroundAudio();
+		assertOutPut("set surround audio");
 	}
 
 	@Test
 	public void shouldOutputWhenStop()
 	{
-		cdPlayer.stop();
+		dvdPlayer.stop();
 		assertOutPut("stopped");
 	}
 
 	@Test
 	public void shouldOutputWhenPause()
 	{
-		cdPlayer.pause();
+		dvdPlayer.pause();
 		assertOutPut("paused");
 	}
 
 	@Test
 	public void shouldReturnDescriptionWhenToString()
 	{
-		String description = cdPlayer.toString();
-		assertThat(description, is("fake_cdplayer"));
+		String description = dvdPlayer.toString();
+		assertThat(description, is("fake_dvdplayer"));
 	}
 }
