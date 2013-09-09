@@ -2,7 +2,6 @@ package com.liqing.component;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,21 +58,21 @@ public class AmplifierTest extends BaseOutputTest
 	@Test
 	public void shouldOutputWhenSetTuner()
 	{
-		amplifier.setTuner(any(Tuner.class));
+		amplifier.setTuner(null);
 		assertOutPut("setting tuner to");
 	}
 
 	@Test
 	public void shouldOutputWhenSetDvd()
 	{
-		amplifier.setDvd(any(DvdPlayer.class));
+		amplifier.setDvd(null);
 		assertOutPut("setting DVD player to");
 	}
 
 	@Test
 	public void shouldOutputWhenSetCD()
 	{
-		amplifier.setCd(any(CDPlayer.class));
+		amplifier.setCd(null);
 		assertOutPut("setting CD player to");
 	}
 
