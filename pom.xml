@@ -9,6 +9,7 @@
         <module>StrategyPattern</module>
         <module>FacadePattern</module>
         <module>FactoryPattern</module>
+        <module>AdapterPattern</module>
     </modules>
     <packaging>pom</packaging>
 
