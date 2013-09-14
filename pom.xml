@@ -10,6 +10,8 @@
         <module>FacadePattern</module>
         <module>FactoryPattern</module>
         <module>AdapterPattern</module>
+        <module>BridgePattern</module>
+        <module>CommandPattern</module>
     </modules>
     <packaging>pom</packaging>
 
